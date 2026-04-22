@@ -326,6 +326,12 @@ select {
   url("../system/production/assets/101420/original/facetselecticon.woff") format("woff"),
   url("../system/production/assets/101421/original/facetselecticon.ttf") format("truetype"),
   url("../system/production/assets/101422/original/facetselecticon.svg#facetselecticon") format("svg");font-weight: normal;font-style: normal;
+
+  src:url("../assets/fonts/facetselecticon.eot");
+  src:url("../assets/fonts/facetselecticon.eot?#iefix") format("embedded-opentype"),
+  url("../assets/fonts/facetselecticon.woff") format("woff"),
+  url("../assets/fonts/facetselecticon.ttf") format("truetype"),
+  url("../assets/fonts/facetselecticon.svg#facetselecticon") format("svg");font-weight: normal;font-style: normal;
 }
 .clearfix:before,
 .clearfix:after {
@@ -346,8 +352,14 @@ select {
   padding: 20px 0;
   width: 60px;
 }
-.facet-loading--dark { background-image: url('../system/production/assets/66627/original/facet-loading-bg--dark.gif'); }
-.facet-loading--light { background-image: url('../system/production/assets/66628/original/facet-loading-bg--light.gif'); }
+.facet-loading--dark {
+  background-image: url('../system/production/assets/66627/original/facet-loading-bg--dark.gif');
+  background-image: url('../assets/facet-loading-bg--dark.gif');
+}
+.facet-loading--light {
+  background-image: url('../system/production/assets/66628/original/facet-loading-bg--light.gif');
+  background-image: url('../assets/facet-loading-bg--dark.gif');
+}
 .facet-section {
   background: #fff;
   font-size: 14px;
