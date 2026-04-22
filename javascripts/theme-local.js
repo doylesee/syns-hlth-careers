@@ -1,8 +1,3 @@
-/*
-csns.maps.script.client_id = null;
-csns.maps.script.api_key= null;
-*/
-
 // Set height
 function setHeight(the_selector) {
   var a_height = 0;
@@ -15,7 +10,6 @@ function setHeight(the_selector) {
   $(the_selector).height(a_height);
 }
 
-/*
 // START: Facet Search scripts
 window.facet_history = true;
 // Function for expanding/collapsing Facet options
@@ -54,102 +48,11 @@ function ds_tm_get_jobs_ajax(url){
  
     $('.facet-section').removeClass("ds_tm_ff_wait");
     window.facet_loading = false;
-  
-    tm_split_url_maps_set(url);
-    tm_maps_reload();
+
     $('.facet-loading').hide();
     $('.jobs-section__inner').show();
   });
 }
-function tm_split_url_maps(full_url){
-  var urls = full_url.split("?");
-  var search_path = urls[0] + ".json";
-  if(search_path=="/.json"){
-    search_path = "/search/jobs.json";
-  }
-  var search_params = urls[1];
-  if(search_params && search_params.length > 1){
-    search_params = "data_format=map&" + search_params;
-  }else{
-    search_params = "data_format=map";
-  }
-  return [search_path, search_params];
-}
-function is_maps_url_different(search_path, search_params){
-  return (csns.maps.jobs_map_default.markers_url!=search_path && csns.maps.jobs_map_default.markers_url_search != search_params)
-}
-function tm_split_url_maps_set(full_url){
-  var srch = tm_split_url_maps(full_url);
-  var search_path = srch[0];
-  var search_params = srch[1];
-
-  if(is_maps_url_different(search_path, search_params)==false){
-    csns.maps.jobs_map_default.markers_url = search_path;
-    csns.maps.jobs_map_default.markers_url_search = search_params;
-    if(typeof(jobsmap) !== "undefined" && jobsmap!=null){
-      jobsmap.markers_url = search_path;
-      jobsmap.markers_url_search = search_params;
-    }
-  }
-}
-function tm_maps_clear(){
-  if(typeof(jobsmap) !== "undefined" && jobsmap!=null) {
-    if(jobsmap.markers!=null && jobsmap.markerclusterer!=null){
-      jobsmap.markerclusterer.removeMarkers( jobsmap.markers )
-      jobsmap.markers = [];
-    }
-  }
-}
-function tm_maps_reload(){
-  if(typeof(jobsmap) !== "undefined" && jobsmap!=null) {
-    google.maps.event.trigger(jobsmap.map, 'resize');
-    window.setTimeout(function(){
-      google.maps.event.trigger(jobsmap.map, 'resize');
-      tm_maps_clear();
-      tm_maps_set_all_results();
-     //jobsmap.draw_map("gmapfvxip", null);
-      //google.maps.event.trigger(jobsmap.map, 'resize');
-      jobsmap.draw_map("gmapfvxip", null);
-    }, 400);
-  }
-}
-function tm_maps_set_all_results(){
-  if(typeof(jobsmap) !== "undefined" && jobsmap!=null) {
-    var totaljobs = parseInt( $("#totalresults").html() );
-    jobsmap = new csns.maps.jobs_map();
-    if(totaljobs > 700){
-      jobsmap.all_results=false;
-    }else{
-      jobsmap.all_results=true;
-    }
-  }
-}
-function tm_maps_refresh(){
-  if(typeof(jobsmap) !== "undefined" && jobsmap!=null){
-    google.maps.event.trigger(jobsmap.map, 'resize');
-    jobsmap.map.fitBounds( jobsmap.bounds );
-  }
-}
-function tm_refesh_map(visible){
-  if(visible==true){
-    if(jobsmap == null){
-      tm_init_jobsmap();
-    }else{
-      tm_maps_refresh();
-    }
-  }
-}
-var jobsmap = null;
-$(document).ready(function(){
-  try{
-    csns.maps.script.load( function(){
-      var cslocations = $cs.parseJSON('');
-      jobsmap = new csns.maps.jobs_map();
-      tm_maps_set_all_results();
-      jobsmap.draw_map("gmapfvxip", cslocations);
-    });
-  }catch(e){ console_log_info(e) }
-});
 
 function ds_tm_facet_click(e){
     e.preventDefault();
@@ -181,14 +84,12 @@ $(document).ready(function() {
     $(document).on("click", ".facet-item__heading h3", function(){ facet_expand_collapse($(this)); });
   
     // Ajax-ing Job Search Results
-    $(document).on("click", ".facet-item__option-link", function(e){ ds_tm_facet_click(e); });
-    
+    //$(document).on("click", ".facet-item__option-link", function(e){ ds_tm_facet_click(e); });
   
     // Showing more Facet options over the facet_num_limit
     $(document).on("click", ".facet-item__show-more", function(e){ ds_tm_facet_more_click(e); });
 });
 // END: Facet Search scripts
-*/
 
 $(document).ready(function() {
   // Responsive videos
